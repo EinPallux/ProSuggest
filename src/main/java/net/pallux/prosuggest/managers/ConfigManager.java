@@ -125,11 +125,14 @@ public class ConfigManager {
 
     // Message getters
     public String getMessage(String path) {
-        return colorize(messages.getString(path, "&cMessage not found: " + path));
+        String message = messages.getString(path, "&cMessage not found: " + path);
+        // Replace prefix placeholder before colorizing
+        message = message.replace("%prefix%", getPrefix());
+        return colorize(message);
     }
 
     public String getMessage(String path, String... replacements) {
-        String message = getMessage(path);
+        String message = messages.getString(path, "&cMessage not found: " + path);
 
         for (int i = 0; i < replacements.length; i += 2) {
             if (i + 1 < replacements.length) {
@@ -137,7 +140,10 @@ public class ConfigManager {
             }
         }
 
-        return message;
+        // Replace prefix placeholder after other replacements
+        message = message.replace("%prefix%", getPrefix());
+
+        return colorize(message);
     }
 
     public String getPrefix() {
