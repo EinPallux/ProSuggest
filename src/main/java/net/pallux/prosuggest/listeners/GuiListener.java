@@ -56,6 +56,9 @@ public class GuiListener implements Listener {
             case ADMIN:
                 handleAdminGuiClick(player, session, slot, displayName, clickType);
                 break;
+            case ADMIN_EDIT:
+                handleAdminEditGuiClick(player, session, slot, displayName, clickType);
+                break;
         }
     }
 
@@ -203,9 +206,8 @@ public class GuiListener implements Listener {
             if (suggestion != null) {
 
                 if (clickType == ClickType.LEFT) {
-                    // Edit suggestion (start chat listener for editing)
-                    player.closeInventory();
-                    plugin.getChatListener().startSuggestionEdit(player, suggestion.getId());
+                    // Open the new admin edit GUI
+                    plugin.getGuiManager().openAdminEditGui(player, suggestion.getId());
 
                 } else if (clickType == ClickType.RIGHT) {
                     // Delete suggestion
@@ -225,13 +227,59 @@ public class GuiListener implements Listener {
                         session.setConfirmationTarget(suggestion.getId());
                         player.sendMessage(plugin.getConfigManager().getMessage("delete.confirm"));
                     }
-
-                } else if (clickType == ClickType.SHIFT_RIGHT) {
-                    // Add admin response
-                    player.closeInventory();
-                    plugin.getChatListener().startAdminResponse(player, suggestion.getId());
                 }
             }
+        }
+    }
+
+    private void handleAdminEditGuiClick(Player player, GuiManager.GuiSession session, int slot,
+                                         String displayName, ClickType clickType) {
+        String suggestionId = session.getViewingSuggestionId();
+        if (suggestionId == null) return;
+
+        // Check for edit/delete buttons
+        if (displayName.contains("Edit Title")) {
+            player.closeInventory();
+            plugin.getChatListener().startSuggestionEdit(player, suggestionId);
+            return;
+        }
+
+        if (displayName.contains("Edit Description")) {
+            player.closeInventory();
+            plugin.getChatListener().startSuggestionEdit(player, suggestionId); // Re-use the existing logic, need to update it to start with description
+            return;
+        }
+
+        if (displayName.contains("Add Admin Response")) {
+            player.closeInventory();
+            plugin.getChatListener().startAdminResponse(player, suggestionId);
+            return;
+        }
+
+        if (displayName.contains("Delete Suggestion")) {
+            if (session.isAwaitingConfirmation() && suggestionId.equals(session.getConfirmationTarget())) {
+                // Confirm deletion
+                if (plugin.getSuggestionManager().deleteSuggestion(suggestionId)) {
+                    player.sendMessage(plugin.getConfigManager().getMessage("admin.deleted",
+                            "%id%", suggestionId));
+                    plugin.getGuiManager().openAdminGui(player, session.getCurrentPage());
+                } else {
+                    player.sendMessage(plugin.getConfigManager().getMessage("delete.not-found", "%id%", suggestionId));
+                    player.closeInventory();
+                }
+            } else {
+                // First click - request confirmation
+                session.setAwaitingConfirmation(true);
+                session.setConfirmationTarget(suggestionId);
+                player.sendMessage(plugin.getConfigManager().getMessage("delete.confirm"));
+            }
+            return;
+        }
+
+        // Handle go back button
+        if (displayName.contains("Go Back")) {
+            plugin.getGuiManager().openAdminGui(player, 1);
+            return;
         }
     }
 

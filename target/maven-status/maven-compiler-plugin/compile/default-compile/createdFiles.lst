@@ -5,12 +5,12 @@ net\pallux\prosuggest\models\Suggestion.class
 net\pallux\prosuggest\listeners\ChatListener$ChatSession$1.class
 net\pallux\prosuggest\models\Suggestion$VoteResult.class
 net\pallux\prosuggest\managers\SuggestionManager$SortType.class
-net\pallux\prosuggest\commands\SuggestAdminCommand.class
 net\pallux\prosuggest\models\Suggestion$VoteType.class
 net\pallux\prosuggest\managers\SuggestionManager.class
 net\pallux\prosuggest\listeners\ChatListener$3.class
 net\pallux\prosuggest\listeners\GuiListener.class
 net\pallux\prosuggest\managers\GuiManager$GuiSession.class
+net\pallux\prosuggest\commands\PsAdminCommand.class
 net\pallux\prosuggest\managers\GuiManager$GuiType.class
 net\pallux\prosuggest\listeners\ChatListener$1.class
 net\pallux\prosuggest\listeners\GuiListener$1.class

@@ -16,6 +16,7 @@ gui:
     view: "&6&lView Suggestion"
     my-suggestions: "&6&lMy Suggestions"
     admin: "&a&lAdmin Suggestions"
+    admin-edit: "&a&lEditing Suggestion &7(ID: %id%)"
 
   # GUI Items
   items:
@@ -106,6 +107,31 @@ gui:
       lore:
         - "&7Current downvotes: &f%downvotes%"
         - "&7Click to downvote this suggestion!"
+
+    # Admin Edit GUI Items
+    admin-edit-title:
+      material: NAME_TAG
+      name: "&e&lEdit Title"
+      lore:
+        - "&7Click to edit the title of this suggestion."
+
+    admin-edit-description:
+      material: WRITTEN_BOOK
+      name: "&e&lEdit Description"
+      lore:
+        - "&7Click to edit the description of this suggestion."
+
+    admin-add-response:
+      material: OAK_SIGN
+      name: "&9&lAdd Admin Response"
+      lore:
+        - "&7Click to add a staff response."
+
+    admin-delete-suggestion:
+      material: BARRIER
+      name: "&c&lDelete Suggestion"
+      lore:
+        - "&7Click to delete this suggestion."
 
     # Filler items
     filler:

@@ -12,11 +12,11 @@ commands:
     usage: /suggest
     aliases: [idea, suggestion]
 
-  suggestadmin:
+  psadmin:
     description: Open the admin suggestion GUI
-    usage: /suggestadmin
+    usage: /psadmin
     permission: prosuggest.admin
-    aliases: [suggestadm, sadmin]
+    aliases: [psadm, psa]
 
 permissions:
   prosuggest.use:

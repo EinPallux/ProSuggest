@@ -168,6 +168,55 @@ public class GuiManager {
         player.openInventory(gui);
     }
 
+    public void openAdminEditGui(Player player, String suggestionId) {
+        Suggestion suggestion = plugin.getSuggestionManager().getSuggestion(suggestionId);
+        if (suggestion == null) {
+            player.sendMessage(plugin.getConfigManager().getMessage("delete.not-found",
+                    "%id%", suggestionId));
+            return;
+        }
+
+        String title = plugin.getConfigManager().getGuiTitle("admin-edit")
+                .replace("%id%", suggestionId);
+
+        Inventory gui = Bukkit.createInventory(null, 27, title);
+
+        // Suggestion display item
+        ItemStack suggestionItem = createDetailedSuggestionItem(suggestion, player);
+        gui.setItem(4, suggestionItem);
+
+        // Edit Title button
+        ItemStack editTitleItem = createActionItem("admin-edit-title");
+        gui.setItem(11, editTitleItem);
+
+        // Edit Description button
+        ItemStack editDescItem = createActionItem("admin-edit-description");
+        gui.setItem(13, editDescItem);
+
+        // Add Admin Response button
+        ItemStack addResponseItem = createActionItem("admin-add-response");
+        gui.setItem(15, addResponseItem);
+
+        // Delete button
+        ItemStack deleteItem = createActionItem("admin-delete-suggestion");
+        gui.setItem(22, deleteItem);
+
+        // Go back button
+        ItemStack backItem = createBackButton();
+        gui.setItem(18, backItem);
+
+        // Fill empty slots
+        fillEmptySlots(gui);
+
+        // Create session
+        GuiSession session = new GuiSession(GuiType.ADMIN_EDIT, 1, SuggestionManager.SortType.RECENT,
+                Collections.singletonList(suggestion));
+        session.setViewingSuggestionId(suggestionId);
+        sessions.put(player.getUniqueId(), session);
+
+        player.openInventory(gui);
+    }
+
     private ItemStack createSuggestionItem(Suggestion suggestion, Player viewer) {
         Material material = Material.valueOf(plugin.getConfigManager().getItemMaterial("suggestion"));
         ItemStack item = new ItemStack(material);
@@ -273,9 +322,8 @@ public class GuiManager {
 
             lore.add("");
             lore.add(plugin.getConfigManager().colorize("&c&lADMIN ACTIONS:"));
-            lore.add(plugin.getConfigManager().colorize("&7Left Click: Edit"));
+            lore.add(plugin.getConfigManager().colorize("&7Left Click: View/Edit"));
             lore.add(plugin.getConfigManager().colorize("&7Right Click: Delete"));
-            lore.add(plugin.getConfigManager().colorize("&7Shift+Right: Add Response"));
 
             meta.setLore(lore);
             item.setItemMeta(meta);
@@ -516,6 +564,6 @@ public class GuiManager {
     }
 
     public enum GuiType {
-        MAIN, MY_SUGGESTIONS, VIEW_SUGGESTION, ADMIN
+        MAIN, MY_SUGGESTIONS, VIEW_SUGGESTION, ADMIN, ADMIN_EDIT
     }
 }

@@ -1,7 +1,7 @@
 package net.pallux.prosuggest;
 
+import net.pallux.prosuggest.commands.PsAdminCommand;
 import net.pallux.prosuggest.commands.SuggestCommand;
-import net.pallux.prosuggest.commands.SuggestAdminCommand;
 import net.pallux.prosuggest.listeners.ChatListener;
 import net.pallux.prosuggest.listeners.GuiListener;
 import net.pallux.prosuggest.managers.ConfigManager;
@@ -51,7 +51,7 @@ public class ProSuggest extends JavaPlugin {
 
     private void registerCommands() {
         getCommand("suggest").setExecutor(new SuggestCommand(this));
-        getCommand("suggestadmin").setExecutor(new SuggestAdminCommand(this));
+        getCommand("psadmin").setExecutor(new PsAdminCommand(this));
     }
 
     private void registerListeners() {
