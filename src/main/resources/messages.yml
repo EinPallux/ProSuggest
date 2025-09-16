@@ -1,0 +1,58 @@
+# ProSuggest Messages Configuration
+# Use & for color codes
+# Available placeholders: %player%, %suggestion_id%, %title%, %author%, %upvotes%, %downvotes%
+
+prefix: "&6[ProSuggest]&7 "
+
+# General Messages
+no-permission: "%prefix%&cYou don't have permission to use this command!"
+reload-success: "%prefix%&aConfiguration reloaded successfully!"
+player-only: "%prefix%&cThis command can only be used by players!"
+
+# Suggestion Creation
+create:
+  title-prompt: "%prefix%&eEnter the title for your suggestion in chat:"
+  title-too-long: "%prefix%&cTitle is too long! Maximum %max% characters."
+  title-received: "%prefix%&aTitle received: &f%title%"
+
+  description-prompt: "%prefix%&eNow enter the description for your suggestion:"
+  description-too-long: "%prefix%&cDescription is too long! Maximum %max% characters."
+  description-received: "%prefix%&aDescription received!"
+
+  success: "%prefix%&aYour suggestion has been created successfully! ID: &f%id%"
+  cancelled: "%prefix%&cSuggestion creation cancelled."
+  timeout: "%prefix%&cSuggestion creation timed out. Please try again."
+  max-reached: "%prefix%&cYou have reached the maximum number of suggestions (%max%)!"
+
+# Voting
+vote:
+  upvoted: "%prefix%&aYou upvoted suggestion &f%id%&a!"
+  downvoted: "%prefix%&cYou downvoted suggestion &f%id%&c!"
+  already-voted: "%prefix%&eYou have already voted on this suggestion!"
+  own-suggestion: "%prefix%&cYou cannot vote on your own suggestion!"
+  removed: "%prefix%&7Your vote has been removed from suggestion &f%id%&7."
+
+# Suggestion Management
+delete:
+  success: "%prefix%&aSuggestion &f%id% &ahas been deleted!"
+  not-found: "%prefix%&cSuggestion with ID &f%id% &cnot found!"
+  not-owner: "%prefix%&cYou can only delete your own suggestions!"
+  confirm: "%prefix%&eClick the suggestion again to confirm deletion!"
+
+# Admin Messages
+admin:
+  edited: "%prefix%&aSuggestion &f%id% &ahas been edited!"
+  response-added: "%prefix%&aResponse added to suggestion &f%id%&a!"
+  deleted: "%prefix%&aSuggestion &f%id% &ahas been deleted by admin!"
+
+# GUI Messages
+gui:
+  no-suggestions: "&7No suggestions found!"
+  loading: "&7Loading suggestions..."
+  page-info: "&7Page %current% of %total%"
+
+  # Item lore additions
+  voted-up: "&a&l✓ &aYou upvoted this!"
+  voted-down: "&c&l✓ &cYou downvoted this!"
+  own-suggestion: "&e&l★ &eYour suggestion"
+  admin-response: "&9Admin Response: &f%response%"

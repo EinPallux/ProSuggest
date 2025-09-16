@@ -1,0 +1,135 @@
+# ProSuggest Configuration File
+# Author: Pallux
+
+# GUI Settings
+gui:
+  # Size of the main suggestion GUI (must be multiple of 9, max 54)
+  main-size: 54
+
+  # Items per page (excluding bottom row buttons)
+  items-per-page: 45
+
+  # GUI Titles
+  titles:
+    main: "&6&lSuggestions &7(Page %page%)"
+    create: "&6&lCreate New Suggestion"
+    view: "&6&lView Suggestion"
+    my-suggestions: "&6&lMy Suggestions"
+    admin: "&a&lAdmin Suggestions"
+
+  # GUI Items
+  items:
+    # Suggestion display item
+    suggestion:
+      material: PAPER
+      name: "&e&l%title%"
+      lore:
+        - "&7By: &f%author%"
+        - "&7ID: &f%id%"
+        - "&7Created: &f%date%"
+        - ""
+        - "&a▲ &f%upvotes% &c▼ &f%downvotes%"
+        - ""
+        - "&7Description:"
+        - "&f%description%"
+        - ""
+        - "&e&lClick to view and vote!"
+
+    # Navigation items
+    previous-page:
+      material: ARROW
+      slot: 45
+      name: "&c&l← Previous Page"
+      lore:
+        - "&7Go to page %page%"
+
+    next-page:
+      material: ARROW
+      slot: 53
+      name: "&a&lNext Page →"
+      lore:
+        - "&7Go to page %page%"
+
+    # Action buttons
+    create-suggestion:
+      material: WRITABLE_BOOK
+      slot: 49
+      name: "&a&lCreate New Suggestion"
+      lore:
+        - "&7Click to create a new suggestion"
+        - "&7for the server!"
+
+    my-suggestions:
+      material: BOOK
+      slot: 47
+      name: "&e&lMy Suggestions"
+      lore:
+        - "&7View and manage your"
+        - "&7suggestions here!"
+
+    delete-suggestion:
+      material: BARRIER
+      slot: 51
+      name: "&c&lDelete Suggestion"
+      lore:
+        - "&7Click to delete one of"
+        - "&7your suggestions!"
+
+    # Sorting buttons
+    sort-recent:
+      material: CLOCK
+      slot: 46
+      name: "&b&lSort: Most Recent"
+      lore:
+        - "&7Currently sorted by most recent"
+        - "&7Click to sort by most upvoted"
+
+    sort-popular:
+      material: DIAMOND
+      slot: 46
+      name: "&b&lSort: Most Popular"
+      lore:
+        - "&7Currently sorted by most upvoted"
+        - "&7Click to sort by most recent"
+
+    # Voting items
+    upvote:
+      material: LIME_CONCRETE
+      name: "&a&l▲ UPVOTE"
+      lore:
+        - "&7Current upvotes: &f%upvotes%"
+        - "&7Click to upvote this suggestion!"
+
+    downvote:
+      material: RED_CONCRETE
+      name: "&c&l▼ DOWNVOTE"
+      lore:
+        - "&7Current downvotes: &f%downvotes%"
+        - "&7Click to downvote this suggestion!"
+
+    # Filler items
+    filler:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+
+# Suggestion Settings
+suggestions:
+  # Maximum title length
+  max-title-length: 32
+
+  # Maximum description length
+  max-description-length: 200
+
+  # Default sorting (RECENT or POPULAR)
+  default-sort: RECENT
+
+  # Allow players to vote on their own suggestions
+  allow-self-vote: false
+
+  # Maximum suggestions per player (0 for unlimited)
+  max-per-player: 5
+
+# Storage Settings
+storage:
+  # File name for suggestions data
+  file-name: "suggestions.yml"

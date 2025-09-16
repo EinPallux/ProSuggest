@@ -1,0 +1,36 @@
+name: ProSuggest
+version: '1.0.0'
+main: net.pallux.prosuggest.ProSuggest
+api-version: '1.21'
+author: Pallux
+description: A comprehensive player suggestion system for Paper servers
+website: https://github.com/Pallux/ProSuggest
+
+commands:
+  suggest:
+    description: Open the suggestion GUI
+    usage: /suggest
+    aliases: [idea, suggestion]
+
+  suggestadmin:
+    description: Open the admin suggestion GUI
+    usage: /suggestadmin
+    permission: prosuggest.admin
+    aliases: [suggestadm, sadmin]
+
+permissions:
+  prosuggest.use:
+    description: Allow players to use the suggestion system
+    default: true
+
+  prosuggest.admin:
+    description: Allow access to admin commands and GUI
+    default: op
+
+  prosuggest.delete.own:
+    description: Allow players to delete their own suggestions
+    default: true
+
+  prosuggest.vote:
+    description: Allow players to vote on suggestions
+    default: true
